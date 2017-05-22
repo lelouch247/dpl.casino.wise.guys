@@ -37,10 +37,10 @@ class Casino
       when 5
         Roulette.new(player)
 <<<<<<< HEAD
-      end 
+      end
 =======
       end
->>>>>>> d607c5863ebc830b9dfc5fbeef2193b7d69250aa
+
     end
 end
 
