@@ -1,3 +1,4 @@
+require 'pry'
 require_relative "cards"
 
 class Deck
@@ -7,7 +8,7 @@ class Deck
  # Gets called when you call the new method to create an instance
  # deck = Deck.new
  def initialize
-   @ranks = %w(A 2 3 4 5 6 7 8 9 10 J Q K)
+   @ranks = %w(Ace 2 3 4 5 6 7 8 9 10 Jack Queen King)
    @suits = %w(Spades Diamonds Clubs Hearts)
    @cards = []
    generate_deck
