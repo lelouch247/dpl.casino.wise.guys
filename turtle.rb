@@ -7,14 +7,11 @@ class Turtle
     @turtle_name = ["Timmy", "Boris", "Gordy", "Dave", "Sammy"]
     @player = player
 
-    puts "<-----------------Welcome to Turtle Racing!------------------>"
-    puts " "
-    puts " "
-    puts " "
-#main_menu
+    puts "                   ||WELCOME TO TURTLE RACING||                   "
+    puts "[Pick Your Turtle]"
     puts @turtle_name
-    turtle_name = gets.strip.to_s
-    if @turtle_name.include?(turtle_name)
+    @my_turtle = gets.strip.to_s.capitalize
+    if @turtle_name.include?(@my_turtle)
       bets
     else
       puts "Invalid turtle name!"
@@ -23,7 +20,17 @@ class Turtle
   end
 
   def bets
-    puts "You have $#{@player.wallet.amount}"
 
+    @mainbet = 0
+
+    puts "You have $#{@player.wallet.amount}. How much would you like to bet?"
+    print "> "
+    @mainbet = gets.to_i
+    puts "Your bet is #{@mainbet}"
+    if @turtle_name.sample == @my_turtle
+      puts "Your Turtle Wins"
+    else
+      puts "You Lose"
+    end
   end
 end
