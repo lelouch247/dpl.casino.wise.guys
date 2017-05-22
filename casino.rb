@@ -1,6 +1,5 @@
 require 'pry'
 require 'colorize'
-
 require_relative 'player'
 require_relative 'heads_tails'
 require_relative 'blackjack'
@@ -15,7 +14,6 @@ class Casino
     def initialize
         puts "Welcome to the Wise Guys Casino!"
         @player = Player.new
-        # need a casino menu
         casino_menu
     end
 
@@ -44,7 +42,6 @@ class Casino
           Roulette.new(player)
       end
     end
-    
 end
 
 Casino.new
