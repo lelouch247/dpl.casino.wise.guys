@@ -6,7 +6,7 @@ require_relative 'heads_tails'
 require_relative 'blackjack'
 require_relative 'turtle'
 require_relative 'slots'
-require_relative "roulette"
+require_relative 'roulette'
 
 
 class Casino
@@ -24,27 +24,27 @@ class Casino
       # game options
       # bankrool - player status
       # quit
-      puts "You have $#{@player.wallet.amount} to play with.  Which game would you like to play?"
+      puts "You have $#{@player.wallet.amount} to play with.  Which game would you like to play?\n"
       puts "1. Heads or Tails?"
       puts "2. Blackjack"
       puts "3. Turtle racing"
       puts "4. Slots"
       puts "5. Roulette"
-      case gets.strip.to_i
-      when 1
-        HeadTails.new(player)
-      when 2
-        BlackJack.new(player)
-      when 3
-        Turtle.new(player)
-      when 4
-        Slots.new(player)
-      when 5
-        Roulette.new(player)
-      end
 
+      case gets.strip.to_i
+        when 1
+          HeadTails.new(player)
+        when 2
+          BlackJack.new(player)
+        when 3
+          Turtle.new(player)
+        when 4
+          Slots.new(player)
+        when 5
+          Roulette.new(player)
+      end
     end
-  end
+    
 end
 
 Casino.new
