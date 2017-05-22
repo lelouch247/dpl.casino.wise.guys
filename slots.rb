@@ -98,7 +98,7 @@ class Slots
     end
 
     def cash_out
-        @player.wallet.amount += @machine_balance   
+        @player.wallet.amount += @machine_balance
         @machine_balance = 0
     end
 
