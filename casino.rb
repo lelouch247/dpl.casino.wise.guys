@@ -41,9 +41,6 @@ class Casino
         Slots.new(player)
       when 5
         Roulette.new(player)
-<<<<<<< HEAD
-      end
-=======
       end
 
     end
