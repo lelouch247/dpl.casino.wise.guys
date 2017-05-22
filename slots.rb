@@ -2,7 +2,7 @@ require_relative 'player'
 require 'pry'
 
 class Slots
-    attr_accessor :machine_balance, :player, :@slot_columns, :@slot_spun
+    attr_accessor :player
 
     def initialize(player)
         @player = player
@@ -28,7 +28,6 @@ class Slots
 
     def slot_result
         puts "spinning..."
-        wait(2)
         @slot_spun << @slot_columns.sample
         @slot_spun << @slot_columns.sample
         @slot_spun << @slot_columns.sample
@@ -38,12 +37,12 @@ class Slots
     def play_1
         @slot_spun.clear
         puts "Player bets $1"
-        @machine_balance -= 1
         slot_result
 
         case @slot_spun.uniq.length
             when 3
                 puts "Better luck next time!"
+                 @machine_balance -= 1
                 slot_menu
             when 2
                 puts "Winner! $3"
@@ -53,12 +52,49 @@ class Slots
                 puts "Winner, winner, chicken dinner! + 20"
                 @machine_balance += 20
                 slot_menu
+        end
     end
 
     def play_5
+        @slot_spun.clear
+        puts "Player bets $5"
+        slot_result
+
+        case @slot_spun.uniq.length
+            when 3
+                puts "Better luck next time!"
+                @machine_balance -= 5
+                slot_menu
+            when 2
+                puts "Winner! $15"
+                @machine_balance += 15
+                slot_menu
+            when 1
+                puts "Winner, winner, chicken dinner! + 100"
+                @machine_balance += 100
+                slot_menu
+        end
     end
 
     def play_10
+        @slot_spun.clear
+        puts "Player bets $10"
+        slot_result
+
+        case @slot_spun.uniq.length
+            when 3
+                puts "Better luck next time!"
+                @machine_balance -= 10
+                slot_menu
+            when 2
+                puts "Winner! $30"
+                @machine_balance += 30
+                slot_menu
+            when 1
+                puts "Winner, winner, chicken dinner! + 200"
+                @machine_balance += 200
+                slot_menu
+        end
     end
 
     def cash_out
