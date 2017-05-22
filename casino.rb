@@ -28,6 +28,7 @@ class Casino
       puts "3. Turtle racing"
       puts "4. Slots"
       puts "5. Roulette"
+      puts "6. Exit"
 
       case gets.strip.to_i
         when 1
@@ -40,7 +41,10 @@ class Casino
           Slots.new(player)
         when 5
           Roulette.new(player)
+        when 6
+          exit(0)
       end
+      casino_menu
     end
 end
 
