@@ -2,11 +2,13 @@ require_relative 'player'
 require 'pry'
 
 class Slots
-    attr_accessor :machine_balance, :player
+    attr_accessor :machine_balance, :player, :@slot_columns, :@slot_spun
 
     def initialize(player)
         @player = player
         @machine_balance = 0
+        @slot_columns = ["cherry", "grape", "lemon", "gold", "apple" ]
+        @slot_spun = []
         puts "----------SLOTS!----------\n"
         #put ascii slot machine here
         puts "\nWelcome #{player.name}"
@@ -24,7 +26,33 @@ class Slots
         slot_menu
     end
 
+    def slot_result
+        puts "spinning..."
+        wait(2)
+        @slot_spun << @slot_columns.sample
+        @slot_spun << @slot_columns.sample
+        @slot_spun << @slot_columns.sample
+        puts @slot_spun
+    end
+
     def play_1
+        @slot_spun.clear
+        puts "Player bets $1"
+        @machine_balance -= 1
+        slot_result
+
+        case @slot_spun.uniq.length
+            when 3
+                puts "Better luck next time!"
+                slot_menu
+            when 2
+                puts "Winner! $3"
+                @machine_balance += 3
+                slot_menu
+            when 1
+                puts "Winner, winner, chicken dinner! + 20"
+                @machine_balance += 20
+                slot_menu
     end
 
     def play_5
