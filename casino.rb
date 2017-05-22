@@ -3,6 +3,11 @@ require 'colorize'
 
 require_relative 'player'
 require_relative 'heads_tails'
+require_relative 'blackjack'
+require_relative 'turtle'
+require_relative 'slots'
+require_relative "roulette"
+
 
 class Casino
     attr_accessor :player
@@ -33,7 +38,7 @@ class Casino
       when 3
         Turtle.new(player)
       when 4
-        Slot.new(player)
+        Slots.new(player)
       when 5
         Roulette.new(player)
       end
