@@ -38,6 +38,7 @@ class Casino
         Roulette.new(player)
       end
     end
+  end
 end
 
 Casino.new

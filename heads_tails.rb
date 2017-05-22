@@ -1,4 +1,4 @@
-require_relative "Casino"
+require_relative "player"
 
 class HeadsTails
   def initialize(player)

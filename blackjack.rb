@@ -1,4 +1,5 @@
-require_relative 'Casino'
+require_relative 'player'
+require_relative 'deck'
 
 class BlackJack
   def initialize
