@@ -19,10 +19,15 @@ class Casino
       # game options
       # bankrool - player status
       # quit
-      puts "Which game would you like to play?"
+      puts "You have $#{@player.wallet.amount} to play with.  Which game would you like to play?"
+      puts "1. Heads or Tails?"
+      puts "2. Blackjack"
+      puts "3. Turtle racing"
+      puts "4. Slots"
+      puts "5. Roulette"
       case gets.strip.to_i
       when 1
-      HeadTails.new(player)
+        HeadTails.new(player)
       when 2
         BlackJack.new(player)
       when 3
@@ -31,7 +36,11 @@ class Casino
         Slot.new(player)
       when 5
         Roulette.new(player)
+<<<<<<< HEAD
       end 
+=======
+      end
+>>>>>>> d607c5863ebc830b9dfc5fbeef2193b7d69250aa
     end
 end
 
