@@ -45,6 +45,7 @@ class Casino
           exit(0)
       end
     casino_menu
+    end
 end
 
 Casino.new
