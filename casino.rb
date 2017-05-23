@@ -24,6 +24,7 @@ class Casino
           puts "Oh yeah? How much you going to slip me?"
           print "> "
           bribe_amount = gets.strip.to_i
+
             if bribe_amount >= 100
               puts "Alright, but don't let anyone know it was me that let you in"
               @player.wallet.amount -= bribe_amount
@@ -32,10 +33,26 @@ class Casino
               puts "As 'Tony' is beating your ass and throwing you to the curb, you realize what a dumb idea that was"
               exit
             end
-        else
+
+          elsif bribe == "flash"
+            if @player.gender == "f"
+              if @player.age >=18
+                puts "NICE! Don't let anyone know it was me that let you in"
+                casino_menu
+              else
+                puts "You trying to get me arrested!?!! GET OUTTA HERE!"
+                exit(0)
+              end
+            else
+              puts "I seen bigger dicks on a 2 yr old.  Get outta here!"
+              exit
+            end
+
+
+          else
           puts "As 'Tony' is beating your ass and throwing you to the curb, you realize what a dumb idea that was"
           exit
-      end
+        end
     end
 
     def bouncer
