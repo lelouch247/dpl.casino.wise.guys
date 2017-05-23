@@ -12,8 +12,8 @@ class BlackJack
 
 
   def welcome_blackjack
-    puts "Welcome to black jack!!!!! Where the jack is black and Black Jack Black plays!!!"
-    puts "How much do you want to bet?"
+    puts "\nWhere the jack is black, and the Black Jack Black plays!!!\n"
+    puts "How much do you want to bet?".colorize(:green)
     @dealer_bank = gets.to_f
       if @dealer_bank >= 1
         blackjack_dealt_cards
@@ -57,7 +57,7 @@ class BlackJack
   end
 
   def player_hit_stay
-    puts "Do you wanna 1) hit or 2) stay?"
+    puts "Do you wanna 1) hit 2) stay"
     case gets.to_i
     when 1
       players_hit
@@ -112,16 +112,43 @@ class BlackJack
 
   def player_dealer_tie
     puts "You both got 21. Pot has been returned"
-    @player.wallet.amount += @dealer_bank.to_f
+    print "Your total now is\s"
+    print "$#{@player.wallet.amount}".colorize(:green)
+    play_again
   end
 
   def player_lose
     puts "YOU LOSE JOHNNY TIGHT LIPS!"
     @player.wallet.amount -= @dealer_bank.to_f
+    print "Your total now is\s"
+    print "$#{@player.wallet.amount}".colorize(:green)
+    play_again
   end
 
   def player_win
     puts "YOU WIN BOSS"
     @player.wallet.amount += (@dealer_bank.to_f * 1.5)
+    print "Your total now is\s"
+    print "$#{@player.wallet.amount}".colorize(:green)
+    play_again
+  end
+
+  def play_again
+    puts "Play again? (Y/N)"
+    yes_no = gets.split.downcase
+      if yes_no == y
+        welcome_blackjack
+      else
+        puts "Please enter Y or N"
+        play_again
+      end
+      if yes_no == n
+        puts "Good-bye"
+      else
+        puts "Please enter Y or N"
+        play_again
+      end
+
+      end
   end
 end

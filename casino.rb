@@ -12,9 +12,10 @@ class Casino
     attr_accessor :player
 
     def initialize
-        puts "Welcome to the Wise Guys Casino!"
+        puts "\n\n\t\t\t\t\t\t\tWelcome to the Wise Guys Casino!\n\n".colorize(:red)
         @player = Player.new
         @player.age >= 21 ? casino_menu : bouncer
+
     end
 
     def bribe
@@ -40,17 +41,17 @@ class Casino
                 puts "NICE! Don't let anyone know it was me that let you in"
                 casino_menu
               else
-                puts "You trying to get me arrested!?!! GET OUTTA HERE!"
+                `say -v Fred "You trying to get me arrested!?!! GET OUTTA HERE!"`
                 exit(0)
               end
             else
-              puts "I seen bigger dicks on a 2 yr old.  Get outta here!"
+              `say "I seen bigger dicks on a 2 yr old.  Get outta here!"`
               exit
             end
 
 
           else
-          puts "As 'Tony' is beating your ass and throwing you to the curb, you realize what a dumb idea that was"
+            `say -v Fred "As 'Tony' is beating your ass, and throwing you to the curb, you realize what a dumb idea that was"`
           exit
         end
     end
@@ -58,23 +59,29 @@ class Casino
     def bouncer
       bouncer = rand(1..4)
       if bouncer == 1
-        puts "The bouncer has not so kindly let you know that your too young to play here"
-        puts "You bounce out before he 'beats your ass'"
+        `say -v Fred "The bouncer has not so kindly let you know that you're too young to play here"`
+        `say -v Fred "You bounce out before he 'beats yo ass'"`
         exit
       else
-        puts "You are too young to play here, but the Tony the bouncer could look away under the right circumstances"
-        puts "What would you like to do?"
+        `say -v Fred "You are too young to play here, but Tony the bouncer could look away under the right circumstances"`
+        puts "What would you like to do?".colorize(:green)
         bribe
       end
     end
 
     def casino_menu
-      puts "You have $#{@player.wallet.amount} to play with.  Which game would you like to play?\n"
-      puts "1. Heads or Tails?"
-      puts "2. Blackjack"
-      puts "3. Turtle racing"
-      puts "4. Slots"
-      puts "5. Roulette"
+      print "You have\s"
+      print "$#{@player.wallet.amount}\s".colorize(:green)
+      puts "to play with.  Which game would you like to play?\n\n"
+      puts "1. Heads or Tails?\n".colorize(:light_blue)
+      puts "2. Blackjack\n".colorize(:light_red)
+      puts "3. Turtle racing\n".colorize(:light_green)
+      print "4. S".colorize(:red)
+      print "L".colorize(:yellow)
+      print "O".colorize(:green)
+      print "T".colorize(:magenta)
+      puts "S\n".colorize(:cyan)
+      puts "5. Roulette\n".colorize(:light_magenta)
       puts "6. Exit"
 
       case gets.strip.to_i
@@ -89,7 +96,9 @@ class Casino
         when 5
           Roulette.new(player)
         when 6
+          `say "Good bye"`
           exit(0)
+
       end
     casino_menu
     end
