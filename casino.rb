@@ -96,7 +96,7 @@ class Casino
         when 5
           Roulette.new(player)
         when 6
-          `say "Good bye"`
+          puts "Good bye"
           exit(0)
 
       end
