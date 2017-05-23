@@ -19,11 +19,15 @@ class Slots
         puts "You have $#{@player.wallet.amount} in your wallet, how much would you like to put in the machine?"
 
         in_machine = gets.to_i
-
-        @machine_balance = @machine_balance + in_machine
-        @player.wallet.amount = @player.wallet.amount - in_machine
-        puts "$#{in_machine} added to the slot machine balance\n"
-        slot_menu
+        if in_machine < @player.wallet.amount
+            @machine_balance = @machine_balance + in_machine
+            @player.wallet.amount = @player.wallet.amount - in_machine
+            puts "$#{in_machine} added to the slot machine balance\n"
+            slot_menu
+        else
+            puts "You don't have that much in your wallet try again"
+            add_money
+        end
     end
 
     def slot_result
@@ -103,28 +107,34 @@ class Slots
     end
 
     def slot_menu
-        puts "\nThe balance in your wallet is $#{@player.wallet.amount}"
-        puts "\nThe balance in the slot machine is $#{@machine_balance}"
+        print "\nThe balance in your wallet is\s"
+        print "$#{@player.wallet.amount}".colorize(:green)
+        print "\n\nThe balance in the slot machine is\s" 
+        print "$#{@machine_balance}".colorize(:green)
         puts "\nWhat would you like to do?"
-        puts "1. Add money from your wallet to the machine"
-        puts "2. play $1"
-        puts "3. play $5"
-        puts "4. play $10"
-        puts "5. cash out and return to the main menu"
+        puts "\n\t1. Add money from your wallet to the machine"
+            if @machine_balance > 0        
+                puts "\t2. play $1"
+                puts "\t3. play $5"
+                puts "\t4. play $10"
+            else
+                puts "\t(You must add money to the machine before proceeding)"
+            end
+        puts "\t5. cash out and return to the main menu"
 
         slot_menu_choice = gets.to_i
 
-        case slot_menu_choice
-            when 1
-                add_money
-            when 2
-                play_1
-            when 3
-                play_5
-            when 4
-                play_10
-            when 5
-                cash_out
-        end
+            case slot_menu_choice
+                when 1
+                    add_money
+                when 2
+                    play_1
+                when 3
+                    play_5
+                when 4
+                    play_10
+                when 5
+                    cash_out
+            end
     end
 end
