@@ -15,11 +15,16 @@ class BlackJack
     puts "Welcome to black jack!!!!! Where the jack is black and Black Jack Black plays!!!"
     puts "How much do you want to bet?"
     @dealer_bank = gets.to_f
-    blackjack_dealt_cards
+      if @dealer_bank >= 1
+        blackjack_dealt_cards
+      else
+        puts "You need to bet more than that bud\n\n"
+      end
   end
 
   def blackjack_dealt_cards
     face_values = { 'Ace' => 11, 'King' => 10, 'Jack' => 10, 'Queen' => 10 }
+
     @player_total = 0
     @dealer_total = 0
 
@@ -27,21 +32,21 @@ class BlackJack
     player_second_card = @deck.cards.sample.rank
 
     puts "You have #{player_first_card} #{@deck.cards.sample.suit}"
-    if face_values.has_key? player_first_card
-      player_first_card = face_values[player_first_card]
-    end
+      if face_values.has_key? player_first_card
+        player_first_card = face_values[player_first_card]
+      end
 
     puts "and #{player_second_card} #{@deck.cards.sample.suit}."
-    if face_values.has_key? player_second_card
-      player_second_card = face_values[player_second_card]
-    end
+      if face_values.has_key? player_second_card
+        player_second_card = face_values[player_second_card]
+      end
 
     dealer_first_card = @deck.cards.sample.rank
 
     puts "Dealer has #{dealer_first_card} #{@deck.cards.sample.suit}"
-    if face_values.has_key? dealer_first_card
-      dealer_first_card = face_values[dealer_first_card]
-    end
+      if face_values.has_key? dealer_first_card
+        dealer_first_card = face_values[dealer_first_card]
+      end
 
     @dealer_total = dealer_first_card.to_i
     @player_total = player_first_card.to_i + player_second_card.to_i
@@ -85,11 +90,13 @@ class BlackJack
 
   def dealer_hit
     face_values = { 'Ace' => 11, 'King' => 10, 'Jack' => 10, 'Queen' => 10 }
+
     dealer_second_card = @deck.cards.sample.rank
     puts "And dealer has #{dealer_second_card} #{@deck.cards.sample.suit}"
-    if face_values.has_key? dealer_second_card
-      dealer_second_card = face_values[dealer_second_card]
-    end
+      if face_values.has_key? dealer_second_card
+        dealer_second_card = face_values[dealer_second_card]
+      end
+
     @dealer_total = @dealer_total + dealer_second_card.to_i
     puts "Dealer has #{@dealer_total}"
 
@@ -109,7 +116,7 @@ class BlackJack
   end
 
   def player_lose
-    puts "YOU LOSE HARRY TWO NOSE!"
+    puts "YOU LOSE JOHNNY TIGHT LIPS!"
     @player.wallet.amount -= @dealer_bank.to_f
   end
 
