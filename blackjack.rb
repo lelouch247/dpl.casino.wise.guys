@@ -149,6 +149,5 @@ class BlackJack
         play_again
       end
 
-      end
   end
 end
