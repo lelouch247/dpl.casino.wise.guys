@@ -12,13 +12,18 @@ class BlackJack
 
 
   def welcome_blackjack
+    if @player.wallet.amount < 1
+    end
     puts "\nWhere the jack is black, and the Black Jack Black plays!!!\n"
-    puts "How much do you want to bet?".colorize(:green)
+    print "How much do you want to bet? Minimum Bet:".colorize(:light_green)
+    puts "$5".colorize(:green)
     @dealer_bank = gets.to_f
-      if @dealer_bank >= 1
-        blackjack_dealt_cards
-      else
-        puts "You need to bet more than that bud\n\n"
+      if @dealer_bank < 5
+        puts "You need to bet more than money that bud\n\n"
+      elsif @dealer_bank > @player.wallet.amount
+         puts "You need more than money that bud\n\n"
+       elsif @dealer_bank <= @player.wallet.amount
+           blackjack_dealt_cards
       end
   end
 
