@@ -10,7 +10,7 @@ class Player
     puts "What is your name?"
     @name = gets.strip
     puts "what is your age?"
-    @age = gets.strip
+    @age = gets.strip.to_i
     puts "what is your gender?"
     @gender = gets.strip
     puts 'How much money are you playing with?'

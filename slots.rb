@@ -7,7 +7,7 @@ class Slots
     def initialize(player)
         @player = player
         @machine_balance = 0
-        @slot_columns = ["cherry", "grape", "lemon", "gold", "apple" ]
+        @slot_columns = ["cherry", "grape", "lemon", "gold", "apple", "beer", "martini"]
         @slot_spun = []
         puts "----------SLOTS!----------\n"
         #put ascii slot machine here
