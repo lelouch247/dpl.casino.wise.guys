@@ -19,10 +19,6 @@ class Roulette
   end
 
 
-  def street
-    place_bet
-  end
-
   def straight_up
     place_bet
     puts "What number would you like to place your bet on? (1-36)"
@@ -38,6 +34,32 @@ class Roulette
 
   def column
     place_bet
+    puts "Which column of numbers would you like to bet one?"
+    puts "1. Numbers 1-12"
+    puts "2. Numbers 13-24"
+    puts "3. Numbers 25-36"
+    
+    my_column = gets.strip.to_i
+    
+    puts "Spinning!!!!"
+    
+    @on_number = rand(37)
+    
+    puts "The ball lands on #{@on_number}!"
+    case my_column
+      when 1
+        @on_number.between?(1,12) ? (puts "Winner!") : (puts "Better luck next spin!")
+        @on_number.between?(1,12) ? (@player.wallet.amount += @bet_amount * 2) : (@player.wallet.amount -= @bet_amount)
+        roulette_menu
+      when 2
+        @on_number.between?(13,24) ? (puts "Winner!") : (puts "Better luck next spin!")
+        @on_number.between?(13,24) ? (@player.wallet.amount += @bet_amount * 2) : (@player.wallet.amount -= @bet_amount)
+        roulette_menu
+      when 3
+        @on_number.between?(24,36) ? (puts "Winner!") : (puts "Better luck next spin!")
+        @on_number.between?(25,36) ? (@player.wallet.amount += @bet_amount * 2) : (@player.wallet.amount -= @bet_amount)
+        roulette_menu
+    end
   end
 
   def even_odd
@@ -85,8 +107,6 @@ class Roulette
       when 4
         straight_up
       when 5
-        street
-      when 6
         puts "Thanks for playing!"
       end
   end
@@ -99,8 +119,7 @@ class Roulette
     puts "2. Even or odd number - pays 1:1"
     puts "3. Column (betting on 12 numbers) - pays 2:1"
     puts "4. Straight up (pick only one number) - pays 35:1"
-    puts "5. Street (bet on 3 numbers) - pays 11:1"
-    puts "6. Back to main casino"
+    puts "5. Back to main casino"
     main_menu_choice
   end
 end
