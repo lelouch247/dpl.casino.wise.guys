@@ -62,7 +62,7 @@ class Casino
 
       case gets.strip.to_i
         when 1
-          HeadTails.new(player)
+          HeadsTails.new(player)
         when 2
           BlackJack.new(player)
         when 3
