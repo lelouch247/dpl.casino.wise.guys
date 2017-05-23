@@ -42,6 +42,22 @@ class Roulette
 
   def even_odd
     place_bet
+    puts "Would you like to be on an even or an odd number"
+    even_or_odd = gets.strip
+    puts "Spinning!!!!"
+    @on_number = rand(37)
+    puts "The ball lands on #{@on_number}"
+    
+    case even_or_odd
+      when "even"
+        @on_number%2 == 0 ? (puts "Winner!") : (puts "Better luck next spin!")
+        @on_number%2 == 0 ? (@player.wallet.amount += @bet_amount) : (@player.wallet.amount -= @bet_amount)
+        roulette_menu
+      when "odd"
+        @on_number%2 != 0 ? (puts "Winner!") : (puts "Better luck next spin!")
+        @on_number%2 != 0 ? (@player.wallet.amount += @bet_amount) : (@player.wallet.amount -= @bet_amount)
+        roulette_menu
+      end
   end
 
   def color_bet
