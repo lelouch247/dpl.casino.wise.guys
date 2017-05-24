@@ -12,7 +12,7 @@ class Casino
     attr_accessor :player
 
     def initialize
-        puts "\n\n\t\t\t\t\t\t\tWelcome to the Wise Guys Casino!\n\n".colorize(:red)
+        puts "\n\n\t\t\t\tWelcome to the Wise Guys Casino!\n\n".colorize(:red)
         @player = Player.new
         @player.age >= 21 ? casino_menu : bouncer
 
