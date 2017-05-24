@@ -1,6 +1,6 @@
 require_relative 'player'
 require 'pry'
-
+require 'colorize'
 class Slots
     attr_accessor :player
 
@@ -9,6 +9,7 @@ class Slots
         @machine_balance = 0
         @slot_columns = ["cherry", "grape", "lemon", "gold", "apple", "beer", "martini"]
         @slot_spun = []
+        @bet = nil
         puts "----------SLOTS!----------\n"
         #put ascii slot machine here
         puts "\nWelcome #{player.name}"
@@ -31,76 +32,29 @@ class Slots
     end
 
     def slot_result
+        @slot_spun.clear
         puts "spinning..."
         @slot_spun << @slot_columns.sample
         @slot_spun << @slot_columns.sample
         @slot_spun << @slot_columns.sample
-        puts @slot_spun
+        print @slot_spun
+            if @slot_spun[0] == @slot_spun[1] && @slot_spun[1] == @slot_spun[2]
+                puts "Three in a row!!!! You win!".colorize(:green)
+                @machine_balance += @bet * 10
+            elsif @slot_spun[0] == @slot_spun[1]
+                    @machine_balance += @bet *3
+                    puts "Two in a row!! You Win!!".colorize(:green)
+            elsif   @slot_spun[1] == @slot_spun[2]
+                    @machine_balance += @bet *3
+                    puts "Two in a row!! You Winn!!".colorize(:green)
+            else
+                puts "No matches, better luck on your next spin!".colorize(:red)
+                    @machine_balance -= @bet
+            end
+        slot_menu
     end
 
-    def play_1
-        @slot_spun.clear
-        puts "Player bets $1"
-        slot_result
-
-        case @slot_spun.uniq.length
-            when 3
-                puts "Better luck next time!"
-                 @machine_balance -= 1
-                slot_menu
-            when 2
-                puts "Winner! $3"
-                @machine_balance += 3
-                slot_menu
-            when 1
-                puts "Winner, winner, chicken dinner! + 20"
-                @machine_balance += 20
-                slot_menu
-        end
-    end
-
-    def play_5
-        @slot_spun.clear
-        puts "Player bets $5"
-        slot_result
-
-        case @slot_spun.uniq.length
-            when 3
-                puts "Better luck next time!"
-                @machine_balance -= 5
-                slot_menu
-            when 2
-                puts "Winner! $15"
-                @machine_balance += 15
-                slot_menu
-            when 1
-                puts "Winner, winner, chicken dinner! + 100"
-                @machine_balance += 100
-                slot_menu
-        end
-    end
-
-    def play_10
-        @slot_spun.clear
-        puts "Player bets $10"
-        slot_result
-
-        case @slot_spun.uniq.length
-            when 3
-                puts "Better luck next time!"
-                @machine_balance -= 10
-                slot_menu
-            when 2
-                puts "Winner! $30"
-                @machine_balance += 30
-                slot_menu
-            when 1
-                puts "Winner, winner, chicken dinner! + 200"
-                @machine_balance += 200
-                slot_menu
-        end
-    end
-
+    
     def cash_out
         @player.wallet.amount += @machine_balance
         @machine_balance = 0
@@ -128,13 +82,19 @@ class Slots
                 when 1
                     add_money
                 when 2
-                    play_1
+                    @bet = 1
+                    slot_result
                 when 3
-                    play_5
+                    @bet = 5
+                    slot_result
                 when 4
-                    play_10
+                    @bet = 10
+                    slot_result
                 when 5
                     cash_out
+                else
+                    puts "Enter a valid selection"
+                    slot_menu
             end
     end
 end
