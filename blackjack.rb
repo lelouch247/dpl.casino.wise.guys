@@ -112,6 +112,8 @@ class BlackJack
       dealer_hit
     elsif @player_total == 21 && @dealer_total == 21
       player_dealer_tie
+    elsif @dealer_total == 21
+      player_lose
     end
   end
 
@@ -126,7 +128,7 @@ class BlackJack
     puts "YOU LOSE JOHNNY TIGHT LIPS!"
     @player.wallet.amount -= @dealer_bank.to_f
     print "Your total now is\s"
-    print "$#{@player.wallet.amount}".colorize(:green)
+    print "$#{@player.wallet.amount}\n".colorize(:green)
     play_again
   end
 
@@ -139,15 +141,11 @@ class BlackJack
   end
 
   def play_again
-    puts "Play again? (Y/N)"
-    yes_no = gets.split.downcase
-      if yes_no == y
+    puts "\nPlay again? (Y/N)"
+    yes_no = gets.chomp.downcase
+      if yes_no == 'y'
         welcome_blackjack
-      else
-        puts "Please enter Y or N"
-        play_again
-      end
-      if yes_no == n
+      elsif yes_no == 'n'
         puts "Good-bye"
       else
         puts "Please enter Y or N"
