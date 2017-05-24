@@ -42,10 +42,10 @@ class Slots
                 puts "Three in a row!!!! You win!".colorize(:green)
                 @machine_balance += @bet * 10
             elsif @slot_spun[0] == @slot_spun[1]
-                    @machine_balance += @bet *3
+                    @machine_balance += @bet *2
                     puts "Two in a row!! You Win!!".colorize(:green)
             elsif   @slot_spun[1] == @slot_spun[2]
-                    @machine_balance += @bet *3
+                    @machine_balance += @bet *2
                     puts "Two in a row!! You Winn!!".colorize(:green)
             else
                 puts "No matches, better luck on your next spin!".colorize(:red)
@@ -54,7 +54,7 @@ class Slots
         slot_menu
     end
 
-    
+
     def cash_out
         @player.wallet.amount += @machine_balance
         @machine_balance = 0
@@ -63,11 +63,11 @@ class Slots
     def slot_menu
         print "\nThe balance in your wallet is\s"
         print "$#{@player.wallet.amount}".colorize(:green)
-        print "\n\nThe balance in the slot machine is\s" 
+        print "\n\nThe balance in the slot machine is\s"
         print "$#{@machine_balance}".colorize(:green)
         puts "\nWhat would you like to do?"
         puts "\n\t1. Add money from your wallet to the machine"
-            if @machine_balance > 0        
+            if @machine_balance > 0
                 puts "\t2. play $1"
                 puts "\t3. play $5"
                 puts "\t4. play $10"
