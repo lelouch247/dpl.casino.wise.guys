@@ -72,22 +72,28 @@ class Casino
     end
 
     def casino_menu
-
+      pid = fork{ exec 'afplay', "zelda_theme.mp3" }
       prompt = TTY::Prompt.new
       game_option = prompt.select("Choose a game", ["Heads or Tails", "Blackjack", "Turtle", "Slots", "Roulette", "Exit"])
       case game_option
       when "Heads or Tails"
+        puts `killall afplay`
           HeadsTails.new(player)
         when "Blackjack"
+          puts `killall afplay`
           BlackJack.new(player)
         when "Turtle"
+          puts `killall afplay`
           Turtle.new(player)
         when "Slots"
+          puts `killall afplay`
           Slots.new(player)
         when "Roulette"
+          puts `killall afplay`
           Roulette.new(player)
         when "Exit"
           puts "Good bye"
+          puts `killall afplay`
           exit(0)
 
 

@@ -10,6 +10,7 @@ class Player
 
     puts "What is your name?".colorize(:yellow)
     @name = gets.strip
+    puts `killall afplay`
     puts 'How much money are you playing with?'.colorize(:yellow)
     @wallet = Wallet.new(gets.to_f)
     puts "what is your gender?".colorize(:yellow)
