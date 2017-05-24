@@ -1,6 +1,8 @@
 require_relative 'player'
 require 'pry'
 
+
+
 class Turtle
   attr_accessor :player
 
@@ -11,6 +13,7 @@ class Turtle
   end
 
   def turtle_menu
+    `say "Welcome To Turtle Racing. Where Losers Like You Have The Chance To Be Winners"`
     puts "                       ||WELCOME TO TURTLE RACING||\n"
     puts "\nGet ready to play #{player.name}!"
     puts "\n                           [Pick Your Turtle]"
