@@ -28,7 +28,9 @@ class Roulette
     place_bet
     puts "What number would you like to place your bet on? (1-36)"
     my_number = gets.strip.to_i
+    pid = fork{ exec 'afplay', "roulette.mp3" }
     puts "Spinning!!!!!"
+    sleep(10)
     @on_number = rand(37)
     puts "The ball lands on #{@on_number}!"
     my_number == @on_number ? (puts "Winner!") : (puts "Better luck next spin!")
@@ -43,13 +45,14 @@ class Roulette
     puts "1. Numbers 1-12"
     puts "2. Numbers 13-24"
     puts "3. Numbers 25-36"
-    
+
     my_column = gets.strip.to_i
-    
+    pid = fork{ exec 'afplay', "roulette.mp3" }
     puts "Spinning!!!!"
-    
+    sleep(10)
+
     @on_number = rand(37)
-    
+
     puts "The ball lands on #{@on_number}!"
     case my_column
       when 1
@@ -72,9 +75,11 @@ class Roulette
     puts "Would you like to be on an even or an odd number"
     even_or_odd = gets.strip
     puts "Spinning!!!!"
+    pid = fork{ exec 'afplay', "roulette.mp3" }
+    sleep(10)
     @on_number = rand(37)
     puts "The ball lands on #{@on_number}"
-    
+
     case even_or_odd
       when "even"
         @on_number%2 == 0 ? (puts "Winner!") : (puts "Better luck next spin!")
@@ -92,6 +97,9 @@ class Roulette
     @on_color = nil
     puts "Would you like to bet on red or black?"
     color_choice = gets.strip
+    pid = fork{ exec 'afplay', "roulette.mp3" }
+    puts "Spinning...."
+    sleep(10)
     @on_color = @all_colors.sample
     puts "and the ball lands on...#{@on_color}"
     color_choice == @on_color ? (@player.wallet.amount += @bet_amount) : (@player.wallet.amount -= @bet_amount)

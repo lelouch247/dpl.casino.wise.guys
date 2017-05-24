@@ -33,22 +33,24 @@ class Slots
 
     def slot_result
         @slot_spun.clear
+        pid = fork{ exec 'afplay', "slot_machine.mp3" }
         puts "spinning..."
+        sleep(5)
         @slot_spun << @slot_columns.sample
         @slot_spun << @slot_columns.sample
         @slot_spun << @slot_columns.sample
         print @slot_spun
             if @slot_spun[0] == @slot_spun[1] && @slot_spun[1] == @slot_spun[2]
-                puts "Three in a row!!!! You win!".colorize(:green)
+                puts "\sThree in a row!!!! You win!".colorize(:green)
                 @machine_balance += @bet * 10
             elsif @slot_spun[0] == @slot_spun[1]
                     @machine_balance += @bet *2
-                    puts "Two in a row!! You Win!!".colorize(:green)
+                    puts "\sTwo in a row!! You Win!!".colorize(:green)
             elsif   @slot_spun[1] == @slot_spun[2]
                     @machine_balance += @bet *2
-                    puts "Two in a row!! You Winn!!".colorize(:green)
+                    puts "\sTwo in a row!! You Win!!".colorize(:green)
             else
-                puts "No matches, better luck on your next spin!".colorize(:red)
+                puts "\sNo matches, better luck on your next spin!".colorize(:red)
                     @machine_balance -= @bet
             end
         slot_menu

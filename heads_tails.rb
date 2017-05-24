@@ -36,6 +36,7 @@ class HeadsTails
 
   def rigging
     puts "Do you want heads or tails?"
+    pid = fork{ exec 'afplay', "coin_toss.mp3" }
     @user_choice = gets.strip.downcase
     if @user_choice == "heads"
       @heads_tails << "tails"

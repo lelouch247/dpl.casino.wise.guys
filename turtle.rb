@@ -70,6 +70,8 @@ class Turtle
     puts "Your bet is #{@mainbet}"
     puts "\n\n\n "
     `say -v "Ava" "Fuhhhhhhhhhhhhhhhhhhh the race has begun! I'm so mad at that fool, lets talk after the race."`
+    pid = fork{ exec 'afplay', "gun_shot.mp3" }
+    sleep(3)
     puts "Turtles Are Racing..."
     puts " "
     puts " "

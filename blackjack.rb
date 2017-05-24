@@ -28,6 +28,9 @@ class BlackJack
   end
 
   def blackjack_dealt_cards
+    pid = fork{ exec 'afplay', "shuffling.mp3" }
+    puts "Cards are being dealt..."
+    sleep(5)
     face_values = { 'Ace' => 11, 'King' => 10, 'Jack' => 10, 'Queen' => 10 }
 
     @player_total = 0

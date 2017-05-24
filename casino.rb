@@ -6,12 +6,14 @@ require_relative 'blackjack'
 require_relative 'turtle'
 require_relative 'slots'
 require_relative 'roulette'
+require 'tty-prompt'
 
 
 class Casino
     attr_accessor :player
 
     def initialize
+      pid = fork{ exec 'afplay', "welcome_to_costco.mp3" }
         puts "\n\n\t\t\t\tWelcome to the Wise Guys Casino!\n\n".colorize(:red)
         @player = Player.new
         @player.age >= 21 ? casino_menu : bouncer
@@ -70,34 +72,24 @@ class Casino
     end
 
     def casino_menu
-      print "You have\s"
-      print "$#{@player.wallet.amount}\s".colorize(:green)
-      puts "to play with.  Which game would you like to play?\n\n"
-      puts "1. Heads or Tails?\n".colorize(:light_blue)
-      puts "2. Blackjack\n".colorize(:light_red)
-      puts "3. Turtle racing\n".colorize(:light_green)
-      print "4. S".colorize(:red)
-      print "L".colorize(:yellow)
-      print "O".colorize(:green)
-      print "T".colorize(:magenta)
-      puts "S\n".colorize(:cyan)
-      puts "5. Roulette\n".colorize(:light_magenta)
-      puts "6. Exit"
 
-      case gets.strip.to_i
-        when 1
+      prompt = TTY::Prompt.new
+      game_option = prompt.select("Choose a game", ["Heads or Tails", "Blackjack", "Turtle", "Slots", "Roulette", "Exit"])
+      case game_option
+      when "Heads or Tails"
           HeadsTails.new(player)
-        when 2
+        when "Blackjack"
           BlackJack.new(player)
-        when 3
+        when "Turtle"
           Turtle.new(player)
-        when 4
+        when "Slots"
           Slots.new(player)
-        when 5
+        when "Roulette"
           Roulette.new(player)
-        when 6
+        when "Exit"
           puts "Good bye"
           exit(0)
+
 
       end
     casino_menu
